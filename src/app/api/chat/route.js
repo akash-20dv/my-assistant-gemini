@@ -3,6 +3,8 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const akashInfo = `
 Hi, I'm Akash Saini, a passionate UI/UX Developer with 2 years and 7 months of experience.
+Work experience : 
+- Currently I am working in Vibes Communications Pvt. ltd. . It has been 2 years and 7 months .
 My skills include:
 - Languages and Frameworks: React.js, Next.js (app routing, page routing), jQuery, JavaScript, HTML, CSS, Bootstrap (versions 4 and 5), Tailwind CSS, and React Bootstrap.
 - Animation Development: Framer Motion, React Spring, GSAP, and AOS.
