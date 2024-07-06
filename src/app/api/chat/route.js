@@ -1,7 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
 const akashInfo = `
 Hi, I'm Akash Saini, a passionate UI/UX Developer with 2 years and 7 months of experience.
 My skills include:
@@ -12,12 +11,13 @@ I focus on enhancing website performance while adhering to SEO best practices.
 -I’ve developed various projects, including e-commerce websites, banking and finance websites ,healthcare platforms, hospitality sites, business websites, portfolio showcases, company profiles, AI chatbots, CMS tools, and PMIS solutions.
 - I love Creating wireframes , prototypes , Ui/ux Design , logos including your Brand collaterals.
 - My E-mail Address for business is sainiakash2096@gmail.com .  
+
 `;
 
 export async function POST(request) {
   const { message, username } = await request.json();
   const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-  
+    
   const prompt = `
 You are an AI assistant for Akash Saini. Use the following information about Akash to answer questions:
 ${akashInfo}

@@ -3,24 +3,55 @@ import { useState, useEffect, useRef } from 'react';
 import ChatInterface from './components/ChatInterface';
 import MessageHistory from './components/MessageHistory';
 import Popup from './components/Popup';
+import LoadingDots from './components/LoadingDots';
 
 export default function Home() {
   const [messages, setMessages] = useState([]);
   const [requestCount, setRequestCount] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
   const [username, setUsername] = useState('');
+  const [isGreeted, setIsGreeted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const messageEndRef = useRef(null);
 
   useEffect(() => {
     const count = localStorage.getItem('requestCount') || 0;
     setRequestCount(parseInt(count));
-    const storedUsername = localStorage.getItem('username') || '';
-    setUsername(storedUsername);
   }, []);
 
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  useEffect(() => {
+    if (username && !isGreeted) {
+      sendGreeting(username);
+      setIsGreeted(true);
+    }
+  }, [username, isGreeted]);
+
+  const sendGreeting = async (name) => {
+    const greetingMessage = `Hello ${name}! I'm Akash Saini's AI assistant. How can I help you today?`;
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        body: JSON.stringify({ message: greetingMessage, username: name }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const data = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      setMessages([{ user: '', ai: data.response }]);
+    } catch (error) {
+      console.error('Error sending greeting:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleNewMessage = async (message) => {
     const newCount = requestCount + 1;
@@ -33,6 +64,7 @@ export default function Home() {
       setShowPopup(true);
     }
 
+    setIsLoading(true);
     try {
       const response = await fetch('/api/chat', {
         method: 'POST',
@@ -49,23 +81,30 @@ export default function Home() {
     } catch (error) {
       console.error('Error sending message:', error);
       alert('Failed to send message. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleUsernameSubmit = (newUsername) => {
     setUsername(newUsername);
-    localStorage.setItem('username', newUsername);
+    setIsGreeted(false); // Reset greeting state
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-bl from-fuchsia-900 via-violet-800 to-sky-700 flex flex-col">
       <div className="flex-grow flex flex-col max-w-3xl mx-auto w-full p-4">
-        <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">My Ai Assitant</h1>
+        <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">AI Chat Assistant for Akash Saini</h1>
         {!username ? (
           <UsernameForm onSubmit={handleUsernameSubmit} />
         ) : (
           <div className="bg-slate-100/25 rounded-lg shadow-lg flex-grow flex flex-col overflow-hidden">
             <MessageHistory messages={messages} messageEndRef={messageEndRef} />
+            {isLoading && (
+              <div className="p-4 bg-gray-100">
+                <LoadingDots />
+              </div>
+            )}
             <ChatInterface onSendMessage={handleNewMessage} />
           </div>
         )}
