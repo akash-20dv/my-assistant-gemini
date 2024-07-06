@@ -94,7 +94,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-bl from-fuchsia-900 via-violet-800 to-sky-700 flex flex-col">
       <div className="flex-grow flex flex-col max-w-3xl mx-auto w-full p-4">
-        <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">AI Chat Assistant </h1>
+        <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">Akash's AI Assistant </h1>
         {!username ? (
           <UsernameForm onSubmit={handleUsernameSubmit} />
         ) : (
