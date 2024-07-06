@@ -94,7 +94,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-bl from-fuchsia-900 via-violet-800 to-sky-700 flex flex-col">
       <div className="flex-grow flex flex-col max-w-3xl mx-auto w-full p-4">
-        <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">AI Chat Assistant for Akash Saini</h1>
+        <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">Akash's AI Assistant </h1>
         {!username ? (
           <UsernameForm onSubmit={handleUsernameSubmit} />
         ) : (
@@ -125,7 +125,7 @@ function UsernameForm({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-slate-100/25 p-6 rounded-lg shadow-lg">
+    <form onSubmit={handleSubmit} className="bg-slate-100/25  p-6 rounded-lg shadow-lg">
       <h2 className="text-xl font-semibold mb-4 text-white">Enter your name to start chatting</h2>
       <div className="flex flex-col sm:flex-row lg:flex-row md:flex-row">
         <input
@@ -137,7 +137,7 @@ function UsernameForm({ onSubmit }) {
         />
         <button
           type="submit"
-          className="px-6 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+          className="mt-2 sm:mt-0 lg:mt-0 md:mt-0 px-6 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
         >
           Start Chat
         </button>
