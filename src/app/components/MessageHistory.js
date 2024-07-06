@@ -11,7 +11,7 @@
             </div>
             <div className="flex justify-start">
               <p className="bg-gray-100 text-black p-3 rounded-lg max-w-xs md:max-w-md lg:max-w-lg">
-                <span className="font-semibold">AI:</span> {msg.ai}
+                <span className="font-semibold">Akash:</span> {msg.ai}
               </p>
             </div>
           </div>
