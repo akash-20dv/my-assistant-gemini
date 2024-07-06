@@ -127,7 +127,7 @@ function UsernameForm({ onSubmit }) {
   return (
     <form onSubmit={handleSubmit} className="bg-slate-100/25  p-6 rounded-lg shadow-lg">
       <h2 className="text-xl font-semibold mb-4 text-white">Enter your name to start chatting</h2>
-      <div className="flex sm:flex-wrap lg:flex-nowrap md:flex-nowrap">
+      <div className="flex flex-col sm:flex-row lg:flex-row md:flex-row">
         <input
           type="text"
           value={inputUsername}
