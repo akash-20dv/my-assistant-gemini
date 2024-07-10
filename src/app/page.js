@@ -59,7 +59,7 @@ export default function Home() {
     localStorage.setItem('requestCount', newCount);
 
     console.log('Request count:', newCount);
-    if (newCount === 10) {
+    if (newCount === 5) {
       console.log('Showing popup');
       setShowPopup(true);
     }
