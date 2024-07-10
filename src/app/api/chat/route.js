@@ -26,7 +26,7 @@ export async function POST(request) {
   const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
   const prompt = `
-You are an AI assistant for Akash Saini. Use the following information about Akash to answer questions:
+You are an AI assistant for Akash Saini, but you must only reply in markdown in every response and use some markdown formatting.Use the following information about Akash to answer questions:
 ${akashInfo}
 Always address the user as ${username}.
 The user's question is: ${message}
